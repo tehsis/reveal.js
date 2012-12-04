@@ -36,6 +36,10 @@
   background: radial-gradient(center, circle cover, #697a85 0%, #424f5a 100%);
 }
 
+.blue .reveal *, .red .reveal *, .darkGrey .reveal * {
+  color: white !important;
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/

@@ -63,6 +63,13 @@ $selectionBackgroundColor: #134674;
 	@include darkGreyBG();
 }
 
+// AWFUL override of color.
+.blue, .red, .darkGrey {
+	.reveal * {
+		color: white !important;
+	}
+}
+
 // Overriding theme template
 // Base theme template for reveal.js
 
