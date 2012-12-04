@@ -1,21 +1,52 @@
-@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 /**
- * Sky theme for reveal.js.
- * 
+ * One-Mozilla theme for Mozillians.
+ * copyleft @pablocubico
+ *
+ * Based on Sky theme for reveal.js.
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
+.blue .reveal .state-background {
+  background: #0054a0;
+  background: -moz-radial-gradient(center, circle cover, #0093d8 0%, #0054a0 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #0093d8), color-stop(100%, #0054a0));
+  background: -webkit-radial-gradient(center, circle cover, #0093d8 0%, #0054a0 100%);
+  background: -o-radial-gradient(center, circle cover, #0093d8 0%, #0054a0 100%);
+  background: -ms-radial-gradient(center, circle cover, #0093d8 0%, #0054a0 100%);
+  background: radial-gradient(center, circle cover, #0093d8 0%, #0054a0 100%);
+}
+
+.red .reveal .state-background {
+  background: #c13831;
+  background: -moz-radial-gradient(center, circle cover, #e93a28 0%, #c13831 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e93a28), color-stop(100%, #c13831));
+  background: -webkit-radial-gradient(center, circle cover, #e93a28 0%, #c13831 100%);
+  background: -o-radial-gradient(center, circle cover, #e93a28 0%, #c13831 100%);
+  background: -ms-radial-gradient(center, circle cover, #e93a28 0%, #c13831 100%);
+  background: radial-gradient(center, circle cover, #e93a28 0%, #c13831 100%);
+}
+
+.darkGrey .reveal .state-background {
+  background: #424f5a;
+  background: -moz-radial-gradient(center, circle cover, #697a85 0%, #424f5a 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #697a85), color-stop(100%, #424f5a));
+  background: -webkit-radial-gradient(center, circle cover, #697a85 0%, #424f5a 100%);
+  background: -o-radial-gradient(center, circle cover, #697a85 0%, #424f5a 100%);
+  background: -ms-radial-gradient(center, circle cover, #697a85 0%, #424f5a 100%);
+  background: radial-gradient(center, circle cover, #697a85 0%, #424f5a 100%);
+}
+
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #add9e4;
-  background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
-  background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
-  background: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+  background: #d7d3c8;
+  background: -moz-radial-gradient(center, circle cover, #f4f1e9 0%, #d7d3c8 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f4f1e9), color-stop(100%, #d7d3c8));
+  background: -webkit-radial-gradient(center, circle cover, #f4f1e9 0%, #d7d3c8 100%);
+  background: -o-radial-gradient(center, circle cover, #f4f1e9 0%, #d7d3c8 100%);
+  background: -ms-radial-gradient(center, circle cover, #f4f1e9 0%, #d7d3c8 100%);
+  background: radial-gradient(center, circle cover, #f4f1e9 0%, #d7d3c8 100%);
   background-color: #f7fbfc;
 }
 
@@ -44,15 +75,12 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #333333;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 0.9em;
-  letter-spacing: -0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-shadow: none;
-}
-
-.reveal h1 {
-  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  font-weight: 300;
 }
 
 /*********************************************
