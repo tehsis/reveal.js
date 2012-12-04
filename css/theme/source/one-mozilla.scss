@@ -101,12 +101,9 @@ body {
 .reveal h6 {
 	margin: 0 0 20px 0;
 	color: $headingColor;
-
 	font-family: $headingFont;
 	line-height: $headingLineHeight;
 	letter-spacing: $headingLetterSpacing;
-
-	text-transform: $headingTextTransform;
 	text-shadow: $headingTextShadow;
 	font-weight: 300;
 }
