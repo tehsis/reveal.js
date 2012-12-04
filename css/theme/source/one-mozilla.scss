@@ -106,7 +106,7 @@ body {
 	line-height: $headingLineHeight;
 	letter-spacing: $headingLetterSpacing;
 
-	text-transform: $headingTextTransform;
+	
 	text-shadow: $headingTextShadow;
 	font-weight: 300;
 }
@@ -222,4 +222,17 @@ body {
 	    -ms-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
 	     -o-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
 	        transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+}
+
+// Misc util
+.breathe {
+	padding: 50px !important;
+}
+
+.breathe-vertical {
+	padding: 50px 0px !important;
+}
+
+section header {
+	margin-bottom: 50px !important;
 }
