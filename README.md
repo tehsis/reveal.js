@@ -1,3 +1,21 @@
+# moz-reveal
+
+Reveal.js theme for Mozillians. I just wanted to have one around for my talks.
+
+The theme was made following the brand guidelines: Open Sans, Open Sans Light for headlines; sandstone, red, blue, and dark grey backgrounds.
+
+It's located at this [Sass file](https://github.com/pablocubico/reveal.js/blob/master/css/theme/source/one-mozilla.scss), feel free to fork and edit.
+
+I'm using Google Web Fonts so there's no Open Sans 500 font, you get 400 instead, which is a reasonable compromise in the hurry. 
+
+[Check out the master branch demo](http://pablocubi.co/mozreveal)
+
+[And here some slides for a recent MozCoffee](http://pablocubi.co/mozcafe1)
+
+Press the 's' key to check out the amazing speaker notes feature.
+
+Here's the original README for some RevealJS reference.
+
 # reveal.js
 
 A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
