@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Introducción al desarrollo en FirefoxOS</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/one-mozilla.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+      <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>FirefoxOS</h1>
+          <h2 class="fragment">Introducción al desarrollo y herramientas</h2>
+          <p>
+          <a href="http://tehsis.me/">@tehsis</a>
+          </p>
+        </section>
+        <section data-state="blue">
+          <section>
+            <h1>FirefoxOS</h1>
+  <h2>En la misión de Mozilla</h2>
+           <aside class="notes">
+            Si bien esta introducción se va a enfocar en aspectos más bien técnicos, es importante dejar en claro el objetivo de FirefoxOS dentro de la misión de Mozilla.
+          </aside>
+          </section>
+          <section>
+          <p>Nuestro objetivo es marcar la diferencia, no obtener beneficios. Cuando eliges Firefox OS, estás contribuyendo en la construcción de un futuro mejor para Internet y sus usuarios en todo el mundo.</p>
+          <p><a href="https://www.mozilla.org/es-AR/firefox/os/"><em>https://www.mozilla.org/es-AR/firefox/os/</em></a></p>
+                   </section>
+          <section>
+              <h1>Objetivo</h1>
+              <p>Las <strong>Open Webapps</strong> deben basarse en estandares para funcionar en todos los dispositivos y browsers del mercado y no volver a fragmentar la web.</p>
+              <aside class="notes">
+                - No más Internet Explorer 6
+              </aside>
+          </section>
+        </section>
+
+        <section data-state="red">
+          <section>
+            <h1>Open? Web? Apps?</h1>
+            <p class="fragment">Aplicaciones, que normalmente se instalan desde un store (appstore, playstore, marketplace, etc) y que se pueden instalar independientemente en un dispositivo (pc, tablet, telefono) puediendo hacer uso de los recursos del mismo (llamadas, gps, contactos, etc.)</p> 
+          </section>
+          
+          <section>
+            <h2>Ventajas</h2>
+            <ul>
+              <li class="fragment">Construidas sobre estandares. Sin atarnos a una plataforma.</li>
+              <li class="fragment">Pensadas para funcionar offline.</li>
+              <li class="fragment">Pueden acceder a recursos de hardware.</li>
+              <li class="fragment">Facilmente distribuibles.</li>
+            </ul>
+            <aside class="notes">
+              - (offline) Se pueden instalar localmente (empaquetadas). Usan "Offline api"
+              - (distribuibles) Mediante store o podemos alojarlas donde queramos.
+            </aside>
+                      </section>
+        <section data-state="blue">
+          <img src="img/installing.png" alt="installing" />
+        </section>
+       </section>
+        <section data-state="red">
+          <section>
+            <h1>FirefoxOS</h1> 
+            <h2 class="fragment">Spoiler Alert: <span class="fragment">Se basa en OWA</span></h2>
+            <p class="fragment">Apps desarrolladas con tecnologias web. Pueden ser instaladas por el usuario, son independientes y pueden
+            ser diseñadas para funcionar offline.</p>
+          </section>
+          <section>
+            <header>
+              <h3>Instaladas por el usuario</h3>
+            </header>
+            <pre>
+<code>
+{
+  "name": "Tabu",
+  "description": "¡Juga al clásico juego de Tabu con tus amigos!",
+  "version": "1.1.1",
+  "launch_path": "../index.html",
+  "fullscreen": "true",
+  "icons": {
+    "60": "/img/tabu-icon.png",
+    "128": "/img/tabu-icon-128.png"
+  },
+  "developer": {
+    "name": "Tehsis",
+    "url": "http://tehsis.com.ar"
+  },
+  "default_locale": "es"
+}
+</code>
+            </pre>
+            <p><span class="fragment">Alojadas/empaquetdas</span><span class="fragment"> - Privilegiadas <span class="fragment">- Certificadas</span></p>
+            <aside class="notes">
+              <dl>
+                <dt>Alojadas/empaquetadas</dt>
+                <dd>Se encuentran en un servidor o en un zip con todo su contenido</dd>
+                <dt>Privilegiadas</dt>
+                <dd>Deben estar firmadas por un marketplace.</dd>
+                <dt>Con privilegios</dt>
+                <dd>Vienen preinstaladas</dd>
+              </dl>
+            </aside>
+          </section>
+          <section>
+            <header>
+              <h1>Son <em>independientes</em></h1>
+              <h2>Cada app funciona en un sandbox</h2>
+            </header>
+            <p class="fragment">
+              <ul>
+                <li class="fragment">Poseen sus propios permisos.</li>
+                <li class="fragment">Sus propias cookies/storage.</li>
+                <li class="fragment">Aunque carguen el mismo sitio, son origines distintos.</li>
+              </ul>
+            </p>
+            <aside class="notes">Ejemplificar con el login de facebook.</aside>
+          </section>
+        </section>
+
+        <section data-state="blue" >
+          <section>
+            <h2>Devices API</h2>
+            <p>
+            Conjunto de APIs que nos permite acceder al hardware y/o recursos de los dispositivos.
+            <aside><a href="https://developer.mozilla.org/es/docs/WebAPI">Documentación en MDN</a></aside>
+            </p>
+            <aside class="notes">
+              Anteriormente se llamaban WebAPI.<br />
+              Permiten que nuestras apps interactuen con el "contenedor" (SO/dispositivo)
+            </aside>
+          </section>
+
+          <section>
+            <h2>Veamos algunas</h2>
+          </section>
+
+          <section>
+            <header>
+              <h3>API de vibración</h3>
+            </header>
+            <pre>
+                        <code>
+    // Vibrar por un segundo (o mil milesimas)
+    window.navigator.vibrate(1000);
+    // Hagamos bailar nuestro telefono
+    window.navigator.vibrate([200, 100, 200]);
+                        </code>
+            </pre>
+          </section>
+          <section>
+            <header>
+              <h3>API de bateria</h3>
+            </header>
+            <pre>
+<code>
+    // Podemos saber el nivel de bateria del dispositivo
+    console.log(window.navigator.battery.level)
+    // O saber si esta enchufado
+    consoe.log(window.navigator.charging);
+</code>
+            </pre>
+            <p>Actualmente poseo <span style="color: red; font-weight: bold;" id="battery-level"></span> de bateria </p>
+            <script language="javascript">
+(function() {
+  document.addEventListener("DOMContentLoaded", function() {
+    var elm =  document.getElementById("battery-level");
+    elm.innerHTML = (navigator.battery.level * 100) + "%";
+    navigator.battery.addEventListener("levelchange", function() {
+      elm.innerHTML = (navigator.battery.level * 100) + "%";
+    }, false);
+  });
+})();
+            </script>
+          </section>
+          <section>
+            <header>
+              <h3>API de notificaciones</h3>
+            </header>
+<pre>
+<code class="js">
+var notifButton = document.getElementById('notification-example');
+notifButton.addEventListener('click', function() {
+  new Notification('Meetup de FirefoxOS!', {
+    icon: './img/Untitled.png',
+    body: '¡!'
+  });
+});
+</code>
+            </pre>
+            <button id="notification-example">Apretame!</button>
+            <style>
+#notification-example {
+  background-color: red;
+  border: medium none;
+  width: 29%;
+  height: 50px;
+  font-size: 24px;
+}
+            </style>
+<script language="javascript">
+var notifButton = document.getElementById('notification-example');
+
+notifButton.addEventListener('click', function() {
+  new Notification('Meetup de FirefoxOS', {
+    icon: './img/Untitled.png',
+    body: '¡Bienvenidos!'
+  });
+});
+            </script>
+          </section>
+          <section>
+            <header>
+              <h3>API de Luz ambiental</h3>
+<pre>
+<code>
+window.addEventListener('devicelight', function(event) {
+    if (event.value < 50) {
+      console.log("Esta oscuro");
+    } else {
+      console.log("Esta clarito");
+    }
+});
+</code>
+</pre>
+<aside class="notes">
+    <ol>
+        <li>Un evento para detectar cambios</li>
+        <li>Experimental. Firefox 22. No todos los SO. FirefoxOS OK.</li>
+        <li>Tapar la camara de la notebook</li>
+        <li>Usar linterna del cel</li>
+    </ol>
+</aside>
+              <p id="api-normal">¡Que lindo se ve!</p>
+              <p id="api-light" style="display: none;">¡Para! ¡Me encandilas!</p>
+              <p id="api-dark" style="display: none;">¡Che! ¡No veo nada!</p>
+<a href="http://codepen.io/tehsis/full/IfsCe/">Ejemplo</a>
+              <script>
+window.addEventListener('devicelight', function(event) {
+  var light_element = document.getElementById("api-light");
+  var dark_element = document.getElementById("api-dark");
+  var normal_element = document.getElementById("api-normal");
+  if (event.value  < 2)  {
+    light_element.style.display = "none";
+    dark_element.style.display = "block";
+    normal_element.style.display = "none";
+  } else if (event.value > 200) {
+    light_element.style.display = "block";
+    normal_element.style.display = "none";
+    dark_element.style.display = "none";
+  } else {
+    normal_element.style.display = "block";
+    dark_element.style.display = "none";
+    light_element.style.display = "none";
+  }
+});
+              </script>
+            </header>
+          </section>
+          <section>
+            <header>
+              <h3>Y muchas más...</h3>
+            </header>
+            <p>
+            <ul>
+              <li class="fragment">Geolocalización</li>
+              <li class="fragment">Bluetooth</li>
+              <li class="fragment">Próximidad</li>
+              <li class="fragment">Orientación</li>
+              <li class="fragment">Contactos</li>
+              <li class="fragment"> Etc ... </li>
+            </ul>
+            </p>
+          </section>
+          <section>
+            <p>De las que hablaremos en los próximos meetups...</p>
+          </section>
+        </section>
+        <section data-state="blue">
+          <section>
+          <h1>Herramientas</h1>
+          <aside class="notes">
+            Acá vamos a ver herramientas y recursos ofrecidas por mozilla y/o la comunidad para desarrollar la app.
+          </aside>
+          </section>
+          <section>
+            <h1>WebIDE</h1>
+            <img src="img/webide.png" alt="Screenshot de webide"></img>
+            <p>Entorno de edición para crear aplicaciones para FFOS.</p>
+            <aside class="notes">
+              - INTRODUCCION A FX DEV
+              - Permite debuggear apps en diferentes runtimes.
+              - Conectar con emuladores, ipad, android, ffos.
+              - Reemplaza al app-manager
+              EJEMPLO en example
+            </aside>
+          </section>
+          <section>
+            <h1>Cordova/Phonegap</h1>
+          </section>
+          <section>
+            <h1>¿No resuelve el<br /> mismo problema?</h1>
+            <ul>
+              <li class="fragment">Proyecto unificado para trabajar multiplataforma.</li>
+              <li class="fragment">Nos permite usar Devices APIs incluso cuando no estan soportadas.</li>
+              <li class="fragment">Una buena solución hasta que las OWA sean realidad.</li>
+            </ul>
+            <aside class="notes">
+              Si bien Phonegap permite usar APIS "nativas" desde la web, usarlo con FFOS
+              nos permite usar el mismo codigo para multiples plataformas. Solución hasta
+              que las OWA cumplan su objetivo.
+              - EJEMPLO CREANDO APP EN CORDOVA Y ABRIENDOLA EN WEBIDE
+            </aside>
+          </section>
+        </section>
+        <section>
+          <h1>Conclusiones</h1>
+          <h2>Y reflexiones final</h1>
+          <aside class="notes">
+            MOSTRAR WEBOGRAM
+            - Una plataforma en constante desarrollo.
+            - Gran comunidad (Ademas, hereda la de la web, que es enorme).
+            - Desarrollo abierto.
+          </aside>
+        </section>
+        <section>
+          <h2>¡Gracias!</h2>
+          <p>¿Preguntas?</p>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  center: true,
+
+  theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+  transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Optional libraries used to extend on reveal.js
+  dependencies: [
+  { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+  { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+  { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+  // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});
+
+    </script>
+
+  </body>
+</html>
